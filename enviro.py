@@ -3,6 +3,7 @@
 import sys
 import time
 import requests
+from shutil import copyfile
 from datetime import datetime
 from picamera import PiCamera, Color
 from envirophat import light, weather, motion, analog
@@ -26,6 +27,7 @@ def make_wanted():
     time.sleep(2)
     camera.capture('/home/pi/Desktop/test_pix/{}.jpg'.format(now))
     camera.stop_preview()
+    copyfile('/home/pi/Desktop/test_pix/{}.jpg'.format(now), '/home/pi/Desktop/current_most_wanted.jpg')
 
 def write(line):
     sys.stdout.write(line)
